@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Clone') {
             steps {
-                git 'https://github.com/your-username/your-java-app.git'
+                git 'https://github.com/charan-creator-maker/myfirstrepo.git'
             }
         }
 
