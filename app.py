@@ -1,7 +1,6 @@
-# simple_jenkins_test.py
+public class HelloCharan {
+    public static void main(String[] args) {
+        System.out.println("Hello, Charan! 👋");
+    }
+}
 
-def greet():
-    print("Hello, Jenkins!")
-
-if __name__ == "__main__":
-    greet()
