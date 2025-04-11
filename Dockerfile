@@ -1,14 +1,7 @@
-# Use JDK image to compile
-FROM openjdk:17-slim
+FROM ubuntu:16.04
+RUN apt-get update
+RUN apt-get -y install apache2
+ADD . /var/www.html
+ENTRYPOINT apachectl -D FOREGROUND
+ENV name Apponix devops
 
-# Set working directory
-WORKDIR /app
-
-# Copy Java file into container
-COPY HelloCharan.java .
-
-# Compile Java file
-RUN javac HelloCharan.java
-
-# Run the program
-CMD ["java", "HelloCharan"]
