@@ -24,13 +24,13 @@ pipeline {
         }
         stage('Build docker imade') {
             steps{
-                sh 'docker build -t ubuntu .
+                sh 'docker build -t myapp .'
             }    
 
         }
         stage('run docker container') {
             steps{
-                sh 'docker run -itd ubuntu
+                sh 'docker run -itd myapp'
             } 
         }   
     }
