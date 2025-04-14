@@ -28,11 +28,7 @@ pipeline {
 
         stage('Run Docker Container') {
             steps {
-                sh '''
-                docker stop $CONTAINER_NAME || true
-                docker rm $CONTAINER_NAME || true
-                docker run -d --name $CONTAINER_NAME -p $PORT:$PORT $IMAGE_NAME
-                '''
+                sh ' docker run -d --name $CONTAINER_NAME -p $PORT:$PORT $IMAGE_NAME:latest
             }
         }
     }
