@@ -2,7 +2,7 @@ pipeline {
     agent any
 
    
-    }
+    
 
     stages {
         stage('Clone') {
@@ -17,16 +17,12 @@ pipeline {
             }
         }
 
-        stage('Build Docker Image') {
+        stage('test') {
             steps {
-                sh 'docker build -t ubuntu .'
+                sh 'mvn test'
             }
         }
 
-        stage('Run Docker Container') {
-            steps {
-                sh ' docker run -it ubuntu:latest
-            }
-        }
+        
     }
 }
