@@ -1,6 +1,12 @@
 pipeline {
     agent any
 
+    environment {
+        IMAGE_NAME = 'myapp'
+        CONTAINER_NAME = 'myapp'
+        PORT = '80'
+    }
+
     stages {
         stage('Clone') {
             steps {
@@ -16,9 +22,16 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
+                sh 'docker build -t $IMAGE_NAME .'
+            }
+        }
+
+        stage('Run Docker Container') {
+            steps {
                 sh '''
-                docker build -t myapp .
-                docker run -d --name myapp -p 80:80 myapp 
+                docker stop $CONTAINER_NAME || true
+                docker rm $CONTAINER_NAME || true
+                docker run -d --name $CONTAINER_NAME -p $PORT:$PORT $IMAGE_NAME
                 '''
             }
         }
