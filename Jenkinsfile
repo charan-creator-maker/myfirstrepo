@@ -22,7 +22,17 @@ pipeline {
                 sh 'mvn test'
             }
         }
+        stage('Build docker imade') {
+            steps{
+                sh 'docker build -t myapp .
+            }    
 
-        
+        }
+        stage('run docker container') {
+            steps{
+                sh 'docker run -itd myapp
+            } 
+        }   
     }
 }
+
