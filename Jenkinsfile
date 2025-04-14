@@ -1,10 +1,7 @@
 pipeline {
     agent any
 
-    environment {
-        IMAGE_NAME = 'myapp'
-        CONTAINER_NAME = 'myapp'
-        PORT = '80'
+   
     }
 
     stages {
@@ -22,13 +19,13 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t $IMAGE_NAME .'
+                sh 'docker build -t ubuntu .'
             }
         }
 
         stage('Run Docker Container') {
             steps {
-                sh ' docker run -d --name $CONTAINER_NAME -p $PORT:$PORT $IMAGE_NAME:latest
+                sh ' docker run -it ubuntu:latest
             }
         }
     }
