@@ -4,7 +4,7 @@ FROM openjdk:8-jdk-alpine
 WORKDIR /app
 
 # Copy the Maven-built .jar file into the container
-COPY target/hello-charan.jar hello-charan.jar
+COPY target/HelloCharan.jar HelloCharan.jar
 
 # Command to run the app
 ENTRYPOINT ["java", "-jar", "hello-charan.jar"]
