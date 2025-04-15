@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         IMAGE_NAME = "hello-charan-app"
-        REPO_URL = "https://github.com/your-username/hello-charan.git" // Replace with your repo URL
+        REPO_URL = "https://github.com/charan-creator-maker/myfirstrepo.git" // Replace with your repo URL
         BRANCH = "main"
     }
 
