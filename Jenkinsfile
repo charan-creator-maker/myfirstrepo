@@ -1,38 +1,44 @@
 pipeline {
     agent any
 
-   
-    
+    environment {
+        IMAGE_NAME = "hello-charan-app"
+        REPO_URL = "https://github.com/your-username/hello-charan.git" // Replace with your repo URL
+        BRANCH = "main"
+    }
 
     stages {
-        stage('Clone') {
+        stage('Clone Repository') {
             steps {
-                 git branch: 'main', url: 'https://github.com/charan-creator-maker/myfirstrepo.git'
+                git branch: "${BRANCH}", url: "${REPO_URL}"
             }
         }
 
         stage('Build with Maven') {
             steps {
-                sh 'mvn clean package'
+                script {
+                    // Build the Java app using Maven
+                    sh 'mvn clean package'
+                }
             }
         }
 
-        stage('test') {
+        stage('Build Docker Image') {
             steps {
-                sh 'mvn test'
+                script {
+                    // Build the Docker image from the Dockerfile
+                    dockerImage = docker.build("${IMAGE_NAME}")
+                }
             }
         }
-        stage('Build docker imade') {
-            steps{
-                sh 'docker build -t myapp .'
-            }    
 
+        stage('Run Docker Container') {
+            steps {
+                script {
+                    // Run the Docker container
+                    dockerImage.run("-d -p 8080:8080")
+                }
+            }
         }
-        stage('run docker container') {
-            steps{
-                sh 'docker run -itd myapp'
-            } 
-        }   
     }
 }
-
