@@ -4,7 +4,7 @@ pipeline {
     environment {
         IMAGE_NAME = "apponix-html-site"
         CONTAINER_NAME = "apponix-container"
-        REPO_URL = "https://github.com/charan-creator-maker/myfirstrepo" // 🔁 Replace with your GitHub repo
+        REPO_URL = "https://github.com/charan-creator-maker/myfirstrepo"  // 🔁 Update with your actual GitHub repo
         BRANCH = "main"
     }
 
@@ -23,11 +23,13 @@ pipeline {
             }
         }
 
-        stage('Stop & Remove Old Container') {
+        stage('Stop & Remove Existing Container') {
             steps {
                 script {
                     sh """
+                    # Check if the container already exists and stop/remove it
                     if [ \$(docker ps -q -f name=${CONTAINER_NAME}) ]; then
+                        echo "Stopping existing container..."
                         docker stop ${CONTAINER_NAME}
                         docker rm ${CONTAINER_NAME}
                     fi
@@ -36,7 +38,7 @@ pipeline {
             }
         }
 
-        stage('Run New Docker Container') {
+        stage('Run Docker Container') {
             steps {
                 script {
                     dockerImage.run("-d --name ${CONTAINER_NAME} -p 8080:80")
