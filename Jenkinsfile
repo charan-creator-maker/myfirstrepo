@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         IMAGE_NAME = "apponix-html-site"
-        CONTAINER_NAME = "apponix-container"
+        CONTAINER_NAME = "apponix-container-1"
         REPO_URL = "https://github.com/charan-creator-maker/myfirstrepo"  // 🔁 Update with your actual GitHub repo
         BRANCH = "main"
     }
