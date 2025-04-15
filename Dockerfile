@@ -7,4 +7,4 @@ WORKDIR /app
 COPY target/HelloCharan.jar HelloCharan.jar
 
 # Command to run the app
-ENTRYPOINT ["java", "-jar", "hello-charan.jar"]
+ENTRYPOINT ["java", "-jar", "HelloCharan.jar"]
